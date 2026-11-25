@@ -39,6 +39,6 @@ test('filters and paginates in the database', () => {
 test('delete records activity before removing the task', () => {
   const { db, service } = setup(); const task = service.create({ title: 'Remove me' });
   service.remove(task.id);
-  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM task_activities WHERE task_id=? AND action='deleted'").get(task.id).n, 1);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM task_activities WHERE task_title=? AND action='deleted' AND task_id IS NULL").get('Remove me').n, 1);
   assert.throws(() => service.getById(task.id), e => e.status === 404); db.close();
 });
