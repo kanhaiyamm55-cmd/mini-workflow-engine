@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f766e"><meta name="description" content="A simple task workflow manager with activity history.">
+  <title>Flowdesk — Mini Workflow Engine</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="/">flow<span>desk</span></a><span class="topnote">Mini Workflow Engine</span><button id="themeToggle" class="icon-btn" aria-label="Toggle theme">◐</button></header>
+<main class="container">
+  <section class="hero"><div><p class="eyebrow">WORKSPACE / TASKS</p><h1>Make progress visible.</h1><p class="muted">A focused space to organise work, track status and keep a reliable history.</p></div><button id="newTaskBtn" class="btn primary">＋ New task</button></section>
+  <section class="stats" aria-label="Task summary"><article><span>Total tasks</span><strong id="statTotal">—</strong></article><article><span>In progress</span><strong id="statProgress">—</strong></article><article><span>Completed</span><strong id="statDone">—</strong></article></section>
+  <section class="panel">
+    <div class="toolbar"><div><h2>Your tasks</h2><p class="muted small">Search, filter and manage your work.</p></div><div class="filters">
+      <input id="searchInput" type="search" placeholder="Search tasks…" aria-label="Search tasks">
+      <select id="statusFilter" aria-label="Filter by status"><option value="">All statuses</option></select>
+      <select id="priorityFilter" aria-label="Filter by priority"><option value="">All priorities</option></select>
+      <button id="clearFilters" class="btn secondary">Clear</button>
+    </div></div>
+    <div id="notice" class="notice" role="status" aria-live="polite"></div>
+    <div id="taskList" class="task-list"><div class="loading">Loading tasks…</div></div>
+    <div class="pagination"><span id="pageInfo" class="muted small"></span><div><button id="prevPage" class="btn secondary">← Previous</button><button id="nextPage" class="btn secondary">Next →</button></div></div>
+  </section>
+  <footer>Built for Assignment 03 · Mini Workflow Engine</footer>
+</main>
+<dialog id="taskDialog" class="dialog"><form id="taskForm" method="dialog">
+  <div class="dialog-head"><div><p class="eyebrow">TASK DETAILS</p><h2 id="dialogTitle">Create a task</h2></div><button type="button" class="icon-btn" id="closeDialog" aria-label="Close">✕</button></div>
+  <label>Title <input id="titleInput" name="title" maxlength="120" required placeholder="What needs to be done?"></label><p class="field-error" id="titleError"></p>
+  <label>Description <textarea id="descriptionInput" name="description" maxlength="2000" rows="3" placeholder="Add a little context…"></textarea></label>
+  <div class="form-row"><label>Priority<select id="priorityInput" name="priority"></select></label><label>Status<select id="statusInput" name="status"></select></label></div>
+  <p class="field-error" id="formError"></p><div class="dialog-actions"><button type="button" id="cancelDialog" class="btn secondary">Cancel</button><button id="saveTask" class="btn primary" type="submit">Save task</button></div>
+</form></dialog>
+<dialog id="detailDialog" class="dialog wide"><div class="dialog-head"><div><p class="eyebrow">TASK OVERVIEW</p><h2 id="detailTitle">Task</h2></div><button class="icon-btn" id="closeDetail" aria-label="Close">✕</button></div><div id="detailContent"></div></dialog>
+<script src="/app.js" defer></script>
+</body></html>
